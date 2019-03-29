@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {AppRoutingModule} from './app-routing/app-routing.module';
 import {AppComponent} from './app.component';
 import {
   MatAutocompleteModule,
@@ -35,7 +34,6 @@ import {
   MatTooltipModule
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HeaderComponent} from './header/header.component';
 import {HttpClientModule} from "@angular/common/http";
@@ -43,6 +41,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {baseURL} from "./shared/baseurl";
 import {DetailComponent} from './detail/detail.component';
 import {HomeComponent} from './home/home.component';
+import {AppRoutingModule} from "./app-routing/app-routing.module";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({

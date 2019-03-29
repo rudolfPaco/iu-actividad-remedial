@@ -25,9 +25,4 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.equipoService.getEquipos().subscribe(equipos => this.equipos = equipos);
   }
-
-  onSelect(equipo: Equipo) {
-    this.equipo = equipo;
-    console.log("este es el equipo: " + this.equipo.id);
-  }
 }
