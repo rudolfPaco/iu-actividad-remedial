@@ -1,27 +1,51 @@
-<div class="box">
-  <ngb-carousel *ngIf="images" class="carousel">
-    <ng-template ngbSlide>
-      <img [src]="images[0]" alt="Random first slide">
-      <div class="carousel-caption">
-        <h3>First slide label</h3>
-        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+<div class="container"
+     fxLayout="column" fxLayoutAlign="start">
+
+  <div fxFlex *ngIf="equipos">
+    <!--binding del dom al property del objeto
+    [propiedadDelComponente]="valorDesdeElDOM"
+    bind-propiedadDelComponente="valorDesdeElDOM"
+    -->
+    <div fxflex>
+      <div fxLayout="column" fxLayoutAlign="start center">
+        <h2 align="center">Maquinaria Pesada y Agricola</h2>
+        <button mat-raised-button color="primary" routerLink="/formularioEquipo">CREAR UN NUEVO EQUIPO</button>
+        <hr>
       </div>
-    </ng-template>
-    <ng-template ngbSlide>
-      <img [src]="images[1]" alt="Random second slide">
-      <div class="carousel-caption">
-        <h3>Second slide label</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      </div>
-    </ng-template>
-    <ng-template ngbSlide>
-      <img [src]="images[2]" alt="Random third slide">
-      <div class="carousel-caption">
-        <h3>Third slide label</h3>
-        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-      </div>
-    </ng-template>
-  </ngb-carousel>
+
+      <mat-grid-list [cols]="4" bind-rowHeight="'600px'" [gutterSize]="'10px'">
+        <mat-grid-tile *ngFor="let equipo of equipos">
+          <mat-card class="example-card">
+            <mat-card-header class="example-header">
+              <mat-card-title><h2 align="center">{{equipo.categoria}}</h2></mat-card-title>
+              <mat-card-subtitle><h3>{{equipo.marca}}</h3></mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-card-content>
+              <p>
+                <img height="250px" data-src="data:image/png;base64,{{equipo.image}}" alt={{equipo.categoria}}>
+              </p>
+              <div fxLayout="row" fxLayoutAlign="space-around stretch">
+                <p matLine>precio: {{equipo.precio}} BOB.-</p>
+              </div>
+              <button mat-raised-button color="primary" [routerLink]="['/detail', equipo.id]"><span
+                class="fa fa-share-square-o fa-lg"></span> mostrar detalle
+              </button>
+
+            </mat-card-content>
+            <mat-card-footer>
+
+            </mat-card-footer>
+          </mat-card>
+
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </div>
+
+  <div [hidden]="equipos">
+    <mat-spinner></mat-spinner>
+    <h4>Loading . . . Please Wait</h4>
+  </div>
+
 </div>
-
-

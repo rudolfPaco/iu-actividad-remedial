@@ -1,4 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {Equipo} from "../shared/equipo";
+import {EquipoService} from "../service/equipo.service";
+import {FotoService} from "../service/foto.service";
+import {Foto} from "../shared/foto";
 
 @Component({
   selector: 'app-home',
@@ -7,12 +11,23 @@ import {Component, OnInit} from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  images = [1, 2, 3].map(() => `https://picsum.photos/900/500?random&t=${Math.random()}`);
+  equipos: Equipo[];
+  fotos: Foto[];
+  equipo: Equipo;
+  id: number;
 
-  constructor() {
+
+  constructor(private equipoService: EquipoService,
+              private fotoService: FotoService,
+              @Inject('BaseURL') private BaseURL) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.equipoService.getEquipos().subscribe(equipos => this.equipos = equipos);
   }
 
+  onSelect(equipo: Equipo) {
+    this.equipo = equipo;
+    console.log("este es el equipo: " + this.equipo.id);
+  }
 }
