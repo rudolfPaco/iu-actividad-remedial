@@ -5,6 +5,7 @@ import {EquipoService} from "../service/equipo.service";
 import {FotoService} from "../service/foto.service";
 import "rxjs-compat/add/operator/switchMap";
 import {Foto} from "../shared/foto";
+import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-detail',
@@ -15,11 +16,13 @@ export class DetailComponent implements OnInit {
 
   fotos: Foto[];
   equipo: Equipo;
+  urlVideo: SafeResourceUrl;
 
-
+  images = [1, 2, 3].map(() => `https://picsum.photos/900/500?random&t=${Math.random()}`);
   constructor(private equipoService: EquipoService,
               private fotoService: FotoService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private sanitizer: DomSanitizer) {
   }
 
   ngOnInit() {
@@ -31,6 +34,15 @@ export class DetailComponent implements OnInit {
       .subscribe(equipo => {
         this.equipo = equipo;
       });
+  }
+
+  mostrar(algo: string) {
+    console.log(algo);
+    this.urlVideo = this.sanitizer.bypassSecurityTrustResourceUrl(algo);
+  }
+
+  limpiarURL(url: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
 }

@@ -15,6 +15,7 @@ export class FotoService {
   getFotos(id: number): Observable<Foto[]> {
     // return Observable.of(ITEMS).delay(2000);
     return <Observable<Foto[]>>this.http.get(baseURL + 'fotos/' + id);
+
   }
 
   getFoto(id: number): Observable<Foto> {

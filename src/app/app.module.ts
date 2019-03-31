@@ -43,6 +43,7 @@ import {DetailComponent} from './detail/detail.component';
 import {HomeComponent} from './home/home.component';
 import {AppRoutingModule} from "./app-routing/app-routing.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {FormularioEquipoComponent} from './formulario-equipo/formulario-equipo.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     HomeComponent,
     HeaderComponent,
     DetailComponent,
+    FormularioEquipoComponent,
   ],
   imports: [
     BrowserModule,

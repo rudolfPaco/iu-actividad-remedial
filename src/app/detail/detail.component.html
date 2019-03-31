@@ -1,38 +1,56 @@
 <div class="container"
-     fxLayout="row"
-     fxLayout.sm="column"
-     fxLayout.xs="column"
-     fxLayoutAlign.gt-md="space-around center"
-     fxLayoutGap="10px"
-     fxLayoutGap.xs="0">
-  <div fxFlex="40" *ngIf="equipo">
-    <mat-card>
-      <mat-card-title-group>
-        <mat-card-title>
-          <h3>{{equipo.categoria | uppercase}}</h3>
-        </mat-card-title>
-      </mat-card-title-group>
-      <img matCardImage data-src="data:image/png;base64,{{equipo.image}}" alt={{equipo.nombre}}>
-      <mat-card-content>
-        <p>{{equipo.marca}}
-        </p>
-      </mat-card-content>
-      <mat-card-actions align="start">
-        <button mat-raised-button>modificar</button>
-        <button mat-raised-button>eliminar</button>
-      </mat-card-actions>
-    </mat-card>
+     fxLayout="column"
+     fxLayoutAlign="center center">
 
-  </div>
-  <div fxFlex="40" *ngIf="equipo">
-    <h1>Detalle del Equipo</h1>
-    <mat-list>
-      <mat-list-item>
-        <p matLine>nombre: {{equipo.categoria}}</p>
-        <p matLine>cantidad: {{equipo.marca}} Unidades</p>
-        <p matLine>estado: {{equipo.estado}}</p>
-        <p matLine>categoria: {{equipo.modelo}}</p>
-      </mat-list-item>
-    </mat-list>
+  <div class="box">
+    <ngb-carousel *ngIf="images" class="carousel">
+
+      <ng-template ngbSlide *ngFor="let foto of fotos">
+        <img data-src="data:image/png;base64,{{foto.image}}" alt="foto">
+        <div class="carousel-caption">
+          <h3>First slide label</h3>
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        </div>
+      </ng-template>
+
+    </ngb-carousel>
   </div>
 </div>
+
+<div fxFlex="40" *ngIf="equipo">
+  <mat-card>
+    <mat-card-title-group>
+      <mat-card-title>
+        <h3>{{equipo.nombre | uppercase}}</h3>
+      </mat-card-title>
+    </mat-card-title-group>
+    <img matCardImage data-src="data:image/png;base64,{{equipo.image}}" alt={{equipo.marca}}>
+  </mat-card>
+
+</div>
+<div fxFlex="40" *ngIf="equipo">
+  <mat-card>
+    <mat-card-title-group>
+      <mat-card-title>
+        <h2>Detalle del Equipo</h2>
+        <hr>
+      </mat-card-title>
+    </mat-card-title-group>
+    <mat-card-content>
+      <p>nombre: {{equipo.categoria}}</p>
+      <p>cantidad: {{equipo.marca}} Unidades</p>
+      <p>estado: {{equipo.estado}}</p>
+      <p>categoria: {{equipo.modelo}}</p>
+      <p>url video: {{equipo.urlVideo}}</p>
+    </mat-card-content>
+    <mat-card-actions align="start">
+      <button mat-raised-button color="primary">comprar articulo</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<p (click)="mostrar(equipo.urlVideo)" [hidden]="urlVideo">mostrar video</p>
+<div *ngIf="urlVideo">
+  <iframe width="420" height="315" [src]='urlVideo' frameborder="0" webkitallowfullscreen mozallowfullscreen
+          allowfullscreen></iframe>
+</div>
+
