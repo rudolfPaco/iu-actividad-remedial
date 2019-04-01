@@ -25,4 +25,22 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.equipoService.getEquipos().subscribe(equipos => this.equipos = equipos);
   }
+
+  mostrarVendido(estado: String) {
+    if (estado == "disponible")
+      return true;
+  }
+
+  mostrarDisponible(estado: String) {
+    if (estado == "vendido")
+      return true;
+  }
+
+  eliminarEquipo(id: number) {
+    this.equipoService.eliminarEquipo(id).subscribe(equipo => {
+      console.log(equipo);
+      alert("se elimino el equipo correctamente...!");
+      window.location.reload();
+    })
+  }
 }

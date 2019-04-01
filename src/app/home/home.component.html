@@ -13,12 +13,13 @@
         <hr>
       </div>
 
-      <mat-grid-list [cols]="4" bind-rowHeight="'600px'" [gutterSize]="'10px'">
+      <mat-grid-list cols="3" rowHeight="3:4">
         <mat-grid-tile *ngFor="let equipo of equipos">
+
           <mat-card class="example-card">
             <mat-card-header class="example-header">
-              <mat-card-title><h2 align="center">{{equipo.categoria}}</h2></mat-card-title>
-              <mat-card-subtitle><h3>{{equipo.marca}}</h3></mat-card-subtitle>
+              <mat-card-title><h2 mat-line align="center">{{equipo.categoria | uppercase}}</h2></mat-card-title>
+              <mat-card-subtitle><h3 mat-line>{{equipo.marca}}</h3></mat-card-subtitle>
             </mat-card-header>
 
             <mat-card-content>
@@ -26,16 +27,32 @@
                 <img height="250px" data-src="data:image/png;base64,{{equipo.image}}" alt={{equipo.categoria}}>
               </p>
               <div fxLayout="row" fxLayoutAlign="space-around stretch">
-                <p matLine>precio: {{equipo.precio}} BOB.-</p>
+                <p matLine>modelo: {{equipo.modelo}}</p>
+                <p matLine>marca: {{equipo.marca}}</p>
               </div>
-              <button mat-raised-button color="primary" [routerLink]="['/detail', equipo.id]"><span
-                class="fa fa-share-square-o fa-lg"></span> mostrar detalle
-              </button>
+              <div fxLayout="row" fxLayoutAlign="space-around stretch">
+                <p matLine>precio: {{equipo.precio}} BOB.-</p>
+                <p matLine>capacidad: {{equipo.capacidad}}</p>
+              </div>
+
+              <div fxLayout="row" fxLayoutAlign="space-around stretch" [hidden]="mostrarDisponible(equipo.estado)">
+                <font color="#673ab7"><h3><span
+                  class="fa fa-check-circle fa-lg"></span> {{equipo.estado}}</h3></font>
+                <button mat-raised-button color="primary" [routerLink]="['/detail', equipo.id]"><span
+                  class="fa fa-share-square-o fa-lg"></span> mostrar detalle
+                </button>
+              </div>
+
+              <div fxLayout="row" fxLayoutAlign="space-around stretch" [hidden]="mostrarVendido(equipo.estado)">
+                <font color="#950000"><h3><span
+                  class="fa fa-close fa-lg"></span> VENDIDO</h3></font>
+                <button mat-raised-button color="warn" (click)="eliminarEquipo(equipo.id)"><span
+                  class="fa fa-trash fa-lg"> eliminar</span>
+                </button>
+              </div>
 
             </mat-card-content>
-            <mat-card-footer>
 
-            </mat-card-footer>
           </mat-card>
 
         </mat-grid-tile>

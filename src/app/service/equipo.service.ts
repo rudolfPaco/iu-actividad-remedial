@@ -13,6 +13,20 @@ export class EquipoService {
   constructor(private http: HttpClient) {
   }
 
+  eliminarEquipo(id: number): Observable<Equipo> {
+    return <Observable<Equipo>>this.http.delete(baseURL + 'equipos/' + id);
+  }
+
+  modificarEquipo(equipo: Equipo): Observable<Equipo> {
+    const json = JSON.stringify(equipo);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    return this.http.put<Equipo>(baseURL + 'equipos', json, {headers: headers}).map(res => {
+      console.log(res);
+      return res;
+    });
+  }
+
   getEquipos(): Observable<Equipo[]> {
     // return Observable.of(ITEMS).delay(2000);
     return <Observable<Equipo[]>>this.http.get(baseURL + 'equipos');

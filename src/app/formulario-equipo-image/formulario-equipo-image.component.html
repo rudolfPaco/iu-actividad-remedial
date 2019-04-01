@@ -1,0 +1,75 @@
+<mat-grid-list cols="3" rowHeight="3:1" *ngIf="equipo">
+
+  <mat-grid-tile [rowspan]="4" [colspan]="1">
+    <mat-card class="example-card">
+      <mat-card-header class="example-header">
+        <mat-card-title><h2 align="center">{{equipo.categoria}}</h2></mat-card-title>
+        <mat-card-subtitle><h3>{{equipo.marca}}</h3></mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p [hidden]="mostrar()">
+          <img height="250px" data-src="data:image/png;base64,{{equipo.image}}" alt={{equipo.categoria}}>
+        </p>
+        <div fxLayout="row" fxLayoutAlign="space-around stretch">
+          <p matLine>precio: {{equipo.precio}} BOB.-</p>
+          <p matLine>capacidad: {{equipo.capacidad}}</p>
+        </div>
+        <p matLine>modelo: {{equipo.modelo}}</p>
+        <p matLine>estado: {{equipo.estado}}</p>
+
+      </mat-card-content>
+      <mat-card-footer>
+
+      </mat-card-footer>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <div [hidden]="ocultar()">
+      <h1>Guardar Imagen principal</h1>
+      <input type="file" name="file" (change)="subiendoando($event, equipo.id)" accept="image/*"/>
+      <h1 [hidden]="mostrar()">Galeria de Fotos</h1>
+    </div>
+  </mat-grid-tile>
+
+  <span *ngIf="fotos">
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
+      <div [hidden]="mostrarFoto(0)">
+        <h1>foto 1</h1>
+        <input type="file" name="file" (change)="guardandoFoto($event, equipo.id)" accept="image/*"/>
+      </div>
+      <div [hidden]="ocultarFoto(0)">
+        <h2>foto 1</h2>
+        <img height="250px" data-src="data:image/png;base64,{{urlFoto(0)}}">
+      </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
+      <div [hidden]="mostrarFoto(1)">
+        <h1>foto 2</h1>
+        <input type="file" name="file" (change)="guardandoFoto($event, equipo.id)" accept="image/*"/>
+      </div>
+      <div [hidden]="ocultarFoto(1)">
+        <h2>foto 2</h2>
+        <img height="250px" data-src="data:image/png;base64,{{urlFoto(1)}}">
+      </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
+      <div [hidden]="mostrarFoto(2)">
+        <h1>foto 3</h1>
+        <input type="file" name="file" (change)="guardandoFoto($event, equipo.id)" accept="image/*"/>
+      </div>
+      <div [hidden]="ocultarFoto(2)">
+        <h2>foto 3</h2>
+        <img height="250px" data-src="data:image/png;base64,{{urlFoto(2)}}">
+      </div>
+    </mat-grid-tile>
+
+  </span>
+  <mat-grid-tile [colspan]="3" [rowspan]="1">
+    <button mat-raised-button color="primary">registrar gastos de impuestos</button>
+  </mat-grid-tile>
+</mat-grid-list>
+

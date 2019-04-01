@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Equipo} from "../shared/equipo";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {EquipoService} from "../service/equipo.service";
 import {FotoService} from "../service/foto.service";
 import "rxjs-compat/add/operator/switchMap";
@@ -22,6 +22,7 @@ export class DetailComponent implements OnInit {
   constructor(private equipoService: EquipoService,
               private fotoService: FotoService,
               private route: ActivatedRoute,
+              private router: Router,
               private sanitizer: DomSanitizer) {
   }
 
@@ -45,4 +46,11 @@ export class DetailComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
+  comprarEquipo(equipo: Equipo) {
+    equipo.estado = 'vendido';
+    this.equipoService.modificarEquipo(equipo).subscribe(data => {
+      alert("se realizo la compra exitosamente...!")
+      this.router.navigate(['/home']);
+    }, error => console.log(error));
+  }
 }
