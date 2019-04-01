@@ -1,0 +1,91 @@
+<div class="container"
+     fxLayout="column" fxLayoutAlign="center center">
+  <div fxFlex fxFlexOffset="20px" class="form-size">
+    <h3>Creando un nuevo Equipo</h3>
+    <p>{{ equipoForm.value | json }} {{ equipoForm.status | json }}</p>
+
+    <form novalidate [formGroup]="equipoForm" (ngSubmit)="guardarNuevoEquipo()" id="form">
+
+      <p>
+        <mat-form-field class="half-width"
+                        color="{{(equipoForm.get('codigo').hasError('required') && equipoForm.get('codigo').touched) ? 'warn' : 'primary'}}">
+          <input matInput formControlName="codigo" placeholder="codigo" type="text" required>
+          <mat-hint>
+                <span
+                  [hidden]="!(equipoForm.get('codigo').hasError('required') && equipoForm.get('codigo').touched)">
+                  requiere un codigo unico de equipo</span>
+          </mat-hint>
+        </mat-form-field>
+        <mat-form-field class="half-width"
+                        color="{{(equipoForm.get('categoria').hasError('required') && equipoForm.get('categoria').touched) ? 'warn' : 'primary'}}">
+          <input matInput formControlName="categoria" placeholder="categoria" type="text" required>
+          <mat-hint>
+                <span
+                  [hidden]="!(equipoForm.get('categoria').hasError('required') && equipoForm.get('categoria').touched)">
+                  requiere de la categoria</span>
+          </mat-hint>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field class="half-width"
+                        color="{{(equipoForm.get('marca').hasError('required') && equipoForm.get('marca').touched) ? 'warn' : 'primary'}}">
+          <input matInput formControlName="marca" placeholder="marca" type="text" required>
+          <mat-hint>
+                <span
+                  [hidden]="!(equipoForm.get('marca').hasError('required') && equipoForm.get('marca').touched)">
+                  requiere la marca</span>
+          </mat-hint>
+        </mat-form-field>
+        <mat-form-field class="half-width"
+                        color="{{(equipoForm.get('modelo').hasError('required') && equipoForm.get('modelo').touched) ? 'warn' : 'primary'}}">
+          <input matInput formControlName="modelo" placeholder="modelo" type="text" required>
+          <mat-hint>
+                <span
+                  [hidden]="!(equipoForm.get('modelo').hasError('required') && equipoForm.get('modelo').touched)">
+                  requiere el modelo del equipo</span>
+          </mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field class="half-width"
+                        color="{{(equipoForm.get('capacidad').hasError('required') && equipoForm.get('capacidad').touched) ? 'warn' : 'primary'}}">
+          <input matInput formControlName="capacidad" placeholder="capacidad" type="text" required>
+          <mat-hint>
+                <span
+                  [hidden]="!(equipoForm.get('capacidad').hasError('required') && equipoForm.get('capacidad').touched)">
+                  requiere la capacidad del equipo</span>
+          </mat-hint>
+        </mat-form-field>
+        <mat-form-field class="half-width"
+                        color="{{(equipoForm.get('precio').hasError('required') && equipoForm.get('precio').touched) ? 'warn' : 'primary'}}">
+          <input matInput formControlName="precio" placeholder="precio" type="number" required>
+          <mat-hint>
+                <span
+                  [hidden]="!(equipoForm.get('precio').hasError('required') && equipoForm.get('precio').touched)">
+                  requiere el precio</span>
+          </mat-hint>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field class="half-width"
+                        color="{{(equipoForm.get('urlVideo').hasError('required') && equipoForm.get('urlVideo').touched) ? 'warn' : 'primary'}}">
+          <input matInput formControlName="urlVideo" placeholder="urlVideo" type="text" required>
+          <mat-hint>
+                <span
+                  [hidden]="!(equipoForm.get('urlVideo').hasError('required') && equipoForm.get('urlVideo').touched)">
+                  requiere la url de video</span>
+          </mat-hint>
+        </mat-form-field>
+      </p>
+      <button type="submit" mat-raised-button color="primary" class="background-primary text-floral-white"
+              [disabled]="equipoForm.invalid">
+        Submit
+      </button>
+      <hr>
+    </form>
+
+  </div>
+</div>
+

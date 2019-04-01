@@ -44,6 +44,7 @@ import {HomeComponent} from './home/home.component';
 import {AppRoutingModule} from "./app-routing/app-routing.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FormularioEquipoComponent} from './formulario-equipo/formulario-equipo.component';
+import {FormularioEquipoImageComponent} from './formulario-equipo-image/formulario-equipo-image.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import {FormularioEquipoComponent} from './formulario-equipo/formulario-equipo.c
     HeaderComponent,
     DetailComponent,
     FormularioEquipoComponent,
+    FormularioEquipoImageComponent,
   ],
   imports: [
     BrowserModule,
