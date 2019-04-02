@@ -21,7 +21,7 @@ export class EquipoService {
     const json = JSON.stringify(equipo);
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this.http.put<Equipo>(baseURL + 'equipos', json, {headers: headers}).map(res => {
+    return this.http.put<Equipo>(baseURL + 'equipos/update/estado', json, {headers: headers}).map(res => {
       console.log(res);
       return res;
     });
