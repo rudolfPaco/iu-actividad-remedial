@@ -1,5 +1,25 @@
 .cabeza {
-  padding: -1px;
+  padding: -10px;
   align-content: center;
   margin: -50px;
 }
+
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.espacio-boton {
+  flex: 0 10px;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  width: 20%;
+}
+

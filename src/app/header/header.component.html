@@ -1,14 +1,23 @@
 <mat-toolbar color="primary">
-  <span><img src="../../assets/img/logo.png" height=30 width=100></span>
-  <a mat-button routerLink="/home"><span class="fa fa-home fa-lg"></span> Home</a>
-  <span class="flex-spacer"></span>
-</mat-toolbar>
+  <mat-toolbar-row>
+    <span><img src="../../assets/img/logo.png" height=30 width=100></span>
+    <a mat-button routerLink="/home"><span class="fa fa-home fa-lg"></span> Home</a>
+    <span class="example-spacer"></span>
 
-<div class="container jumbotron" fxLayout="column" fxLayoutAlign="start center">
-  <div class="cabeza">
-    <h1>Tienda Online Maquinas Pesadas y Agricolas</h1>
-    <p>We take inspiration from the World's best safety practices, and create a unique fusion experience. Our awesome
-      safety protection items
-      will tickle your safety vision!</p>
-  </div>
-</div>
+    <div class="example-container">
+      <mat-form-field>
+        <mat-select (selectionChange)="mostrarCategorias(categoria.value)" #categoria>
+          <mat-option *ngFor="let categoria of categorias" [value]="categoria">
+            {{ categoria }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <span class="espacio-boton"></span>
+    <input class="mat-raised-button" type="text" placeholder="Buscar equipo"
+           (keyup.enter)="buscarEquipo(buscarTexto.value)" #buscarTexto/>
+    <span class="espacio-boton"></span>
+    <button (click)="buscarEquipo(buscarTexto.value)" mat-raised-button color="accent" type="button">Buscar</button>
+
+  </mat-toolbar-row>
+</mat-toolbar>

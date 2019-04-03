@@ -10,6 +10,8 @@ import {baseURL} from "../shared/baseurl";
 })
 export class EquipoService {
 
+  equipos: Equipo[];
+
   constructor(private http: HttpClient) {
   }
 
@@ -25,6 +27,36 @@ export class EquipoService {
       console.log(res);
       return res;
     });
+  }
+
+  buscarEquiposCategoria(cat: string): Observable<Equipo[]> {
+    return <Observable<Equipo[]>>this.http.get(baseURL + 'equipos/byCategoria/' + cat);
+  }
+
+  buscarEquipos(termino: string): Equipo[] {
+    let equiposEncontrados: Equipo[] = [];
+    termino = termino.toLowerCase();
+    this.getEquipos().subscribe(equipos => this.equipos = equipos);
+    console.log(this.equipos);
+    if (this.equipos != null) {
+      for (let equipo of this.equipos) {
+        let categoria = equipo.categoria.toLowerCase();
+        let marca = equipo.marca.toLowerCase();
+        let modelo = equipo.modelo.toLowerCase();
+        let capacidad = equipo.capacidad.toLowerCase();
+        let precio = String(equipo.precio).toLowerCase();
+        if (categoria.indexOf(termino) >= 0 || marca.indexOf(termino) >= 0 || modelo.indexOf(termino) >= 0 || capacidad.indexOf(termino) >= 0 || precio.indexOf(termino) >= 0) {
+          equiposEncontrados.push(equipo);
+        }
+      }
+    }
+
+
+    return equiposEncontrados;
+  }
+
+  getCategorias(): Observable<String[]> {
+    return <Observable<String[]>>this.http.get(baseURL + 'equipos/categorias');
   }
 
   getEquipos(): Observable<Equipo[]> {
