@@ -38,7 +38,6 @@ export class DetailComponent implements OnInit {
   }
 
   mostrar(algo: string) {
-    console.log(algo);
     this.urlVideo = this.sanitizer.bypassSecurityTrustResourceUrl(algo);
   }
 

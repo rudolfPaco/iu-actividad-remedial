@@ -6,7 +6,8 @@
 
     <div class="example-container">
       <mat-form-field>
-        <mat-select (selectionChange)="mostrarCategorias(categoria.value)" #categoria>
+        <mat-select placeholder="seleccione la categoria" (selectionChange)="mostrarCategorias(categoria.value)"
+                    #categoria>
           <mat-option *ngFor="let categoria of categorias" [value]="categoria">
             {{ categoria }}
           </mat-option>

@@ -1,8 +1,54 @@
-<div class="container"
-     fxLayout="column"
-     fxLayoutAlign="center center">
+<mat-grid-list cols="3" rowHeight="2:1">
 
-  <div class="box">
+  <mat-grid-tile [rowspan]="2" [colspan]="1">
+    <div fxFlex="100" *ngIf="equipo">
+      <mat-card>
+        <mat-card-title-group>
+          <mat-card-title>
+            <h3>{{equipo.categoria | uppercase}}</h3>
+          </mat-card-title>
+        </mat-card-title-group>
+        <img matCardImage data-src="data:image/png;base64,{{equipo.image}}" alt={{equipo.marca}}>
+      </mat-card>
+
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile [rowspan]="2" [colspan]="1">
+    <div fxFlex="70" *ngIf="equipo">
+      <mat-card>
+        <mat-card-title-group>
+          <mat-card-title>
+            <h2>Detalle del Equipo</h2>
+            <hr>
+          </mat-card-title>
+        </mat-card-title-group>
+        <mat-card-content>
+          <p>nombre: {{equipo.categoria | uppercase }}</p>
+          <p>cantidad: {{equipo.marca}} Unidades</p>
+          <p>categoria: {{equipo.modelo}}</p>
+          <p>capacidad: {{equipo.capacidad}}</p>
+          <p>precio: {{equipo.precio}} BOB.-.</p>
+          <p>estado: {{equipo.estado}}</p>
+        </mat-card-content>
+        <mat-card-actions align="start">
+          <button mat-raised-button color="primary" (click)="comprarEquipo(equipo)">comprar articulo</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile [rowspan]="2" [colspan]="1">
+    <button mat-raised-button color="warn" (click)="mostrar(equipo.urlVideo)" [hidden]="urlVideo"
+            fxLayoutAlign="center">mostrar video
+    </button>
+    <div *ngIf="urlVideo">
+      <iframe width="420" height="315" [src]='urlVideo' frameborder="0" webkitallowfullscreen mozallowfullscreen
+              allowfullscreen></iframe>
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile [rowspan]="2" [colspan]="3">
     <ngb-carousel *ngIf="images" class="carousel">
 
       <ng-template ngbSlide *ngFor="let foto of fotos">
@@ -12,43 +58,7 @@
       </ng-template>
 
     </ngb-carousel>
-  </div>
-</div>
+  </mat-grid-tile>
 
-<div fxFlex="40" *ngIf="equipo">
-  <mat-card>
-    <mat-card-title-group>
-      <mat-card-title>
-        <h3>{{equipo.categoria | uppercase}}</h3>
-      </mat-card-title>
-    </mat-card-title-group>
-    <img matCardImage data-src="data:image/png;base64,{{equipo.image}}" alt={{equipo.marca}}>
-  </mat-card>
-
-</div>
-<div fxFlex="40" *ngIf="equipo">
-  <mat-card>
-    <mat-card-title-group>
-      <mat-card-title>
-        <h2>Detalle del Equipo</h2>
-        <hr>
-      </mat-card-title>
-    </mat-card-title-group>
-    <mat-card-content>
-      <p>nombre: {{equipo.categoria}}</p>
-      <p>cantidad: {{equipo.marca}} Unidades</p>
-      <p>estado: {{equipo.estado}}</p>
-      <p>categoria: {{equipo.modelo}}</p>
-      <p>url video: {{equipo.urlVideo}}</p>
-    </mat-card-content>
-    <mat-card-actions align="start">
-      <button mat-raised-button color="primary" (click)="comprarEquipo(equipo)">comprar articulo</button>
-    </mat-card-actions>
-  </mat-card>
-</div>
-<p (click)="mostrar(equipo.urlVideo)" [hidden]="urlVideo">mostrar video</p>
-<div *ngIf="urlVideo">
-  <iframe width="420" height="315" [src]='urlVideo' frameborder="0" webkitallowfullscreen mozallowfullscreen
-          allowfullscreen></iframe>
-</div>
+</mat-grid-list>
 
